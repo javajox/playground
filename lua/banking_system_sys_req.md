@@ -67,5 +67,5 @@ By pressing "b" key ("b" from balance), the operator will able to see how much m
 
 ### Exit the system
 
-Buy pressing "x" (from eXit) key the operator will exit from system
+By pressing "x" (from eXit) key the operator will exit from system
 
