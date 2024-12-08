@@ -48,6 +48,7 @@ void add_node() {
     scanf("%d", &node->id);
     if (id_already_present(node->id)) {
         puts("This id already exits!");
+        free(node);
         return;
     }
     puts("data = ");
