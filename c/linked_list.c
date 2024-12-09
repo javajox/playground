@@ -158,6 +158,7 @@ void erase_all_list() {
 void show_node() {
     if (first == NULL) {
         puts("The list is empty, nothing to show.");
+        return;
     }
     puts("Show data for node");
     puts("id = ");
