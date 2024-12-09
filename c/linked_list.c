@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <assert.h>
 
 struct Node {
     int id;
@@ -46,6 +47,7 @@ void add_node() {
     puts("Enter node data:");
     puts("id = ");
     scanf("%d", &node->id);
+    assert(node->id > 0);
     if (id_already_present(node->id)) {
         puts("This id already exits!");
         free(node);
@@ -101,6 +103,7 @@ void update_node() {
     puts("Node id which will be updated>");
     int id;
     scanf("%d", &id);
+    assert(id > 0);
     struct Node *c = first;
     while (c != NULL) {
         if (id == c->id) {
@@ -119,6 +122,7 @@ void remove_node() {
     puts("Node id to be erased>");
     int id;
     scanf("%d", &id);
+    assert(id > 0);
     struct Node *c = first;
     struct Node *p = first;
     while (c != NULL) {
@@ -159,6 +163,7 @@ void show_node() {
     puts("id = ");
     int id;
     scanf("%d", &id);
+    assert(id > 0);
     struct Node *c = first;
     while (c != NULL) {
         if (id == c->id) {
