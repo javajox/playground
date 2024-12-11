@@ -216,6 +216,8 @@ void insert() {
         }
         c = c->next;
     }
+    printf("There is no node with id = %d\n", id_after);
+    free(node);
 }
 
 int main(void) {
