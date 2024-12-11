@@ -219,8 +219,8 @@ void insert() {
     free(node);
 }
 
-void print_list_debug(struct Node* head) {
-    struct Node* current = head;
+void print_list_debug(struct Node *head) {
+    struct Node *current = head;
     while (current != NULL) {
         printf("Node at address: %p\n", (void*)current);
         printf("├── id: %d\n", current->id);
