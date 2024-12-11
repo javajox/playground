@@ -125,7 +125,14 @@ void remove_node() {
     scanf("%d", &id);
     assert(id > 0);
     struct Node *c = first;
+    if (id == first->id) {
+        first = first->next;
+        free(c);
+        printf("The node with id %d (first node), has been erased!\n", id);
+        return;
+    }
     struct Node *p = first;
+    c = c->next;
     while (c != NULL) {
         if (id == c->id) {
             p->next = c->next;
