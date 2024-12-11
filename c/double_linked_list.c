@@ -25,6 +25,7 @@ void print_menu() {
     puts("'e' - erase the list");
     puts("'s' - show a specific node (string field)");
     puts("'v' - view all list");
+    puts("'d' - print list debug");
     puts("'x' - exit the system");
 }
 
@@ -218,6 +219,18 @@ void insert() {
     free(node);
 }
 
+void print_list_debug(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("Node at address: %p\n", (void*)current);
+        printf("├── id: %d\n", current->id);
+        printf("├── data: %s\n", current->data);
+        printf("├── next: %p\n", (void*)current->next);
+        printf("└── prev: %p\n", (void*)current->prev);
+        current = current->next;
+    }
+}
+
 int main(void) {
     char op = '\0';
 
@@ -261,6 +274,8 @@ int main(void) {
             case 'v':
                 view_all_list();
                 break;
+            case 'd':
+                print_list_debug(first);
             default:
                 puts("Unknown operations!");
         }
