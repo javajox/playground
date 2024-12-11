@@ -19,6 +19,7 @@ void print_menu() {
 
     puts("'a' - add a new node");
     puts("'r' - remove a node");
+    puts("'i' - insert a new node");
     puts("'u' - update a node");
     puts("'c' - count how many nodes are present");
     puts("'e' - erase the list");
@@ -182,6 +183,41 @@ void update_node() {
     printf("Couldn't find node with id = %d\n", id);
 }
 
+void insert() {
+    puts("Give me the node id after which this one will be inserted>");
+    int id_after;
+    scanf("%d", &id_after);
+    assert(id_after > 0);
+
+    struct Node *node;
+    node = malloc(sizeof(struct Node));
+    puts("Enter node data:");
+    puts("id = ");
+    scanf("%d", &node->id);
+    assert(node->id > 0);
+    if (id_already_present(node->id)) {
+        puts("This id already exits!");
+        free(node);
+        return;
+    }
+    puts("data = ");
+    scanf("%s", node->data);
+    node->next = NULL;
+
+    struct Node *c = first;
+    while (c != NULL) {
+        if (c->id == id_after) {
+            // we find our node, so next we neet to insert the new node after this one
+            node->next = c->next;
+            node->prev = c;
+            c->next = node;
+        }
+        c = c->next;
+    }
+    printf("There is no node with id = %d\n", id_after);
+    free(node);
+}
+
 int main(void) {
     char op = '\0';
 
@@ -206,6 +242,9 @@ int main(void) {
                 break;
             case 'r':
                 remove_node();
+                break;
+            case 'i' :
+                insert();
                 break;
             case 'u':
                 update_node();
