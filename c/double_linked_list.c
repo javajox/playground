@@ -209,9 +209,13 @@ void insert() {
     while (c != NULL) {
         if (c->id == id_after) {
             // we find our node, so next we neet to insert the new node after this one
+            if(c->next != NULL) {
+                c->next->prev = node;
+            }
             node->next = c->next;
             node->prev = c;
             c->next = node;
+            return;
         }
         c = c->next;
     }
