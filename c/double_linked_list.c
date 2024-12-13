@@ -147,7 +147,17 @@ void remove_node() {
     int id;
     scanf("%id", &id);
     assert(id > 0);
+
     struct Node *c = first;
+    if (first->id == id) {
+        first = first->next;
+        if (first->prev != NULL) {
+            first->prev = NULL;
+        }
+        free(c);
+        return;
+    }
+
     while (c != NULL) {
         if (id == c->id) {
             if (c->next != NULL) {
