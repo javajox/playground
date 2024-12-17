@@ -1,17 +1,10 @@
-#include <stdlib.h>
+#include "generic_linked_list.h"
 #include <string.h>
 #include <assert.h>
 
-struct Node {
-    int id;
-    void *data;
-    size_t data_size;
-    struct Node *next;
-};
-
 struct Node *first;
 
-struct Node *locate_last() {
+static struct Node *locate_last() {
     if (first == NULL) {
         return NULL;
     }
