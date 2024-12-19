@@ -41,7 +41,7 @@ void free_node(struct Node *node) {
 }
 
 void remove_node(int id) {
-
+    assert(id > 0);
     if (id == first->id) {
         // dealing with the first node
         struct Node *n = first;
@@ -62,4 +62,16 @@ void remove_node(int id) {
         p = c;
         c = c->next;
     }
+}
+
+struct Node *find_node_by_id(int id) {
+    assert(id > 0);
+    struct Node *c = first;
+    while (c != NULL) {
+        if (id == c->id) {
+            return c;
+        }
+        c = c->next;
+    }
+    return NULL;
 }

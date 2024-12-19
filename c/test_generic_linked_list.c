@@ -67,7 +67,7 @@ void test_custom_struct_node(void) {
     TEST_ASSERT_EQUAL_INT(20, stored->y);
 }
 
-void add_remove_node(void) {
+void test_add_remove_node(void) {
     int first_value = 42;
     add_node(1, &first_value, sizeof(int));
 
@@ -90,6 +90,32 @@ void add_remove_node(void) {
     TEST_ASSERT_NULL(first);
 }
 
+void test_find_node_by_id() {
+    int first_value = 42;
+    add_node(1, &first_value, sizeof(int));
+
+    int second_value = 84;
+    add_node(2, &second_value, sizeof(int));
+
+    struct Node *result = find_node_by_id(1);
+
+    TEST_ASSERT_NOT_NULL(result);
+    TEST_ASSERT_EQUAL_INT(42, *(int*)result->data);
+    TEST_ASSERT_EQUAL_INT(sizeof(int), result->data_size);
+    TEST_ASSERT_NOT_NULL(result->next);
+
+    struct Node *result2 = find_node_by_id(2);
+
+    TEST_ASSERT_NOT_NULL(result2);
+    TEST_ASSERT_EQUAL_INT(84, *(int*)result2->data);
+    TEST_ASSERT_EQUAL_INT(sizeof(int), result2->data_size);
+    TEST_ASSERT_NULL(result2->next);
+
+    struct Node *result3 = find_node_by_id(700);
+
+    TEST_ASSERT_NULL(result3);
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -97,7 +123,8 @@ int main(void) {
     RUN_TEST(test_add_integer_node);
     RUN_TEST(test_adding_to_non_empty_list);
     RUN_TEST(test_custom_struct_node);
-    RUN_TEST(add_remove_node);
+    RUN_TEST(test_add_remove_node);
+    RUN_TEST(test_find_node_by_id);
 
     return UNITY_END();
 }

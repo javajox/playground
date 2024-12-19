@@ -16,5 +16,6 @@ extern struct Node *first;
 void add_node(int id, void *data, size_t data_size);
 void free_node(struct Node *node);
 void remove_node(int id);
+struct Node *find_node_by_id(int id);
 
 #endif // GENERIC_LINKED_LIST_H
