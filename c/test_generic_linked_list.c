@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "generic_linked_list.h"
+#include "string.h"
 
 void setUp(void) {
     first = NULL;
@@ -66,6 +67,29 @@ void test_custom_struct_node(void) {
     TEST_ASSERT_EQUAL_INT(20, stored->y);
 }
 
+void add_remove_node(void) {
+    int first_value = 42;
+    add_node(1, &first_value, sizeof(int));
+
+    int second_value = 84;
+    add_node(2, &second_value, sizeof(int));
+
+    remove_node(444);
+
+    TEST_ASSERT_NOT_NULL(first);
+    TEST_ASSERT_NOT_NULL(first->next);
+    TEST_ASSERT_NULL(first->next->next);
+
+    remove_node(2);
+
+    TEST_ASSERT_NOT_NULL(first);
+    TEST_ASSERT_NULL(first->next);
+
+    remove_node(1);
+
+    TEST_ASSERT_NULL(first);
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -73,6 +97,7 @@ int main(void) {
     RUN_TEST(test_add_integer_node);
     RUN_TEST(test_adding_to_non_empty_list);
     RUN_TEST(test_custom_struct_node);
+    RUN_TEST(add_remove_node);
 
     return UNITY_END();
 }

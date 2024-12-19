@@ -39,3 +39,27 @@ void free_node(struct Node *node) {
         free(node);
     }
 }
+
+void remove_node(int id) {
+
+    if (id == first->id) {
+        // dealing with the first node
+        struct Node *n = first;
+        first = first->next;
+        free_node(n);
+        first = NULL;
+        return;
+    }
+
+    struct Node *c = first->next;
+    struct Node *p = first;
+    while (c != NULL) {
+        if (id == c->id) {
+            p->next = c->next;
+            free_node(c);
+            break;
+        }
+        p = c;
+        c = c->next;
+    }
+}
