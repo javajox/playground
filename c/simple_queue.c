@@ -55,3 +55,16 @@ int dequeue(struct Queue *queue) {
     free(n);
     return data;
 }
+
+int get_size(struct Queue *queue) {
+    if (queue == NULL || queue->first == NULL) {
+        return 0;
+    }
+    struct Node *c = queue->first;
+    int k = 0;
+    while (c != NULL) {
+        ++k;
+        c = c->next;
+    }
+    return k;
+}
