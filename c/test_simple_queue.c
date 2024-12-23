@@ -55,6 +55,31 @@ void test_get_size_when_queue_is_not_empty(void) {
     TEST_ASSERT_EQUAL_INT(0, get_size(queue));
 }
 
+void test_peek_size_when_queue_is_empty(void) {
+
+    TEST_ASSERT_EQUAL_INT(-1, peek(NULL));
+
+    queue = create_queue();
+
+    TEST_ASSERT_EQUAL_INT(-1, peek(queue));
+}
+
+void test_peek_size_when_queue_is_not_empty(void) {
+    queue = create_queue();
+    enqueue(queue, 1);
+    enqueue(queue, 2);
+
+    TEST_ASSERT_EQUAL_INT(1, peek(queue));
+
+    dequeue(queue);
+
+    TEST_ASSERT_EQUAL_INT(2, peek(queue));
+
+    dequeue(queue);
+
+    TEST_ASSERT_EQUAL_INT(-1, peek(queue));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -62,6 +87,8 @@ int main(void) {
     RUN_TEST(test_enqueue_dequeue);
     RUN_TEST(test_get_size_when_queue_is_empty);
     RUN_TEST(test_get_size_when_queue_is_not_empty);
+    RUN_TEST(test_peek_size_when_queue_is_empty);
+    RUN_TEST(test_peek_size_when_queue_is_not_empty);
 
     return UNITY_END();
 }

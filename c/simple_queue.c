@@ -68,3 +68,10 @@ int get_size(struct Queue *queue) {
     }
     return k;
 }
+
+int peek(struct Queue *queue) {
+    if (queue == NULL || queue->first == NULL) {
+        return -1;
+    }
+    return queue->first->data;
+}
