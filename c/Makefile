@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -g
 
 # Source files
 UNITY_FILES = unity.c
-SOURCE_FILES = generic_linked_list.c simple_queue.c
+SOURCE_FILES = generic_linked_list.c simple_queue.c simple_stack.c
 
 # Header files directory
 INCLUDES = -I.
@@ -18,8 +18,12 @@ test_simple_queue: $(UNITY_FILES) simple_queue.c test_simple_queue.c
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o test_simple_queue
 	./test_simple_queue
 
+test_simple_stack: $(UNITY_FILES) simple_stack.c test_simple_stack.c
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o test_simple_stack
+	./test_simple_stack
+
 # Run all tests
-test: test_generic_linked_list test_simple_queue
+test: test_generic_linked_list test_simple_queue test_simple_stack
 
 clean:
-	rm -f test_generic_linked_list test_simple_queue
+	rm -f test_generic_linked_list test_simple_queue test_simple_stack
