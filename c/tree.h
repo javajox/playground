@@ -26,9 +26,9 @@ int insert(struct Node *root, char *loc_address, char direction, int node_data);
  *
  * @param root - the root of the tree
  * @param loc_address - location in the tree
- * @return 0 if ok, -1 if error
+ * @return 0 if ok, -1 if error, -5 not a leaf, -2 unknown character in path (location is not valid)
  */
-int delete(struct Node *root, char *loc_address);
+int delete_leaf(struct Node *root, char *loc_address);
 
 struct Node *create_node(int node_data);
 

@@ -71,12 +71,45 @@ void test_when_wrong_direction(void) {
     TEST_ASSERT_EQUAL_INT(-3, insert(root, "RR", 'k', 1));
 }
 
+void test_delete_leaf(void) {
+    root = create_node(123);
+    root->left = create_node(1);
+    root->right = create_node(2);
+    root->right->left = create_node(3);
+    root->right->right = create_node(4);
+    root->left->right = create_node(5);
+    root->left->right->right = create_node(6);
+
+    TEST_ASSERT_EQUAL_INT(-2, delete_leaf(root, "LRpRRRR"));
+    TEST_ASSERT_EQUAL_INT(-1, delete_leaf(root, "LRRRRRRR"));
+    TEST_ASSERT_EQUAL_INT(-5, delete_leaf(root, "LR"));
+
+    TEST_ASSERT_EQUAL_INT(0, delete_leaf(root, "LRR"));
+    TEST_ASSERT_NULL(root->left->right->right);
+
+    TEST_ASSERT_EQUAL_INT(0, delete_leaf(root, "RR"));
+    TEST_ASSERT_NULL(root->right->right);
+
+    TEST_ASSERT_EQUAL_INT(0, delete_leaf(root, "RL"));
+    TEST_ASSERT_NULL(root->right->left);
+
+    TEST_ASSERT_EQUAL_INT(0, delete_leaf(root, "R"));
+    TEST_ASSERT_NULL(root->right);
+
+    TEST_ASSERT_EQUAL_INT(0, delete_leaf(root, "LR"));
+    TEST_ASSERT_NULL(root->left->right);
+
+    TEST_ASSERT_EQUAL_INT(0, delete_leaf(root, "L"));
+    TEST_ASSERT_NULL(root->left);
+}
+
 int main(void) {
     UNITY_BEGIN();
 
     RUN_TEST(test_create_root);
     RUN_TEST(test_insert);
     RUN_TEST(test_when_wrong_direction);
+    RUN_TEST(test_delete_leaf);
 
     return UNITY_END();
 }

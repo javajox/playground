@@ -74,3 +74,39 @@ int insert(struct Node *root, char *loc_address, char direction, int node_data) 
     }
     return 0;
 }
+
+int delete_leaf(struct Node *root, char *loc_address) {
+    if (location_not_valid(loc_address)) {
+        return -2;
+    }
+    // node which will be removed
+    struct Node *c = root;
+    char *l = loc_address;
+    // keep the pointer to the previous node
+    struct Node *p = NULL;
+    while (*l != '\0') {
+        if (*l == 'L') {
+            p = c;
+            c = c->left;
+        } else if (*l == 'R') {
+            p = c;
+            c = c->right;
+        }
+        if (c == NULL) {
+            // path not found
+            return -1;
+        }
+        ++l;
+    }
+    if (c->left != NULL || c->right != NULL) {
+        return -5;
+    }
+    // here we know that our node is a leaf
+    if (p->left == c) {
+        p->left = NULL;
+    } else {
+        p->right = NULL;
+    }
+    free(c);
+    return 0;
+}
