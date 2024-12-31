@@ -103,6 +103,29 @@ void test_delete_leaf(void) {
     TEST_ASSERT_NULL(root->left);
 }
 
+struct Node *create_test_tree() {
+    root = create_node(123);
+    root->left = create_node(1);
+    root->right = create_node(2);
+    root->right->left = create_node(3);
+    root->right->right = create_node(4);
+    root->left->right = create_node(5);
+    root->left->right->right = create_node(6);
+    return root;
+}
+
+void test_in_order_traverse(void) {
+    in_order_traverse(create_test_tree());
+}
+
+void test_pre_order_traverse(void) {
+    pre_order_traverse(create_test_tree());
+}
+
+void test_post_order_traverse(void) {
+    post_order_traverse(create_test_tree());
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -110,6 +133,9 @@ int main(void) {
     RUN_TEST(test_insert);
     RUN_TEST(test_when_wrong_direction);
     RUN_TEST(test_delete_leaf);
+    RUN_TEST(test_pre_order_traverse);
+    RUN_TEST(test_in_order_traverse);
+    RUN_TEST(test_post_order_traverse);
 
     return UNITY_END();
 }

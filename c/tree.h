@@ -32,4 +32,10 @@ int delete_leaf(struct Node *root, char *loc_address);
 
 struct Node *create_node(int node_data);
 
+//traversal operations
+
+void in_order_traverse(struct Node *root);
+void pre_order_traverse(struct Node *root);
+void post_order_traverse(struct Node *root);
+
 #endif //C_TREE_H

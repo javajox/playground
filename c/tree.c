@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 struct Node *create_node(int root_data) {
     struct Node *node = malloc(sizeof(struct Node));
@@ -109,4 +110,34 @@ int delete_leaf(struct Node *root, char *loc_address) {
     }
     free(c);
     return 0;
+}
+
+void in_order_traverse(struct Node *root) {
+    if (root->left != NULL) {
+        in_order_traverse(root->left);
+    }
+    printf("%d\n", root->data);
+    if (root->right != NULL) {
+        in_order_traverse(root->right);
+    }
+}
+
+void pre_order_traverse(struct Node *root) {
+    printf("%d\n", root->data);
+    if (root->left != NULL) {
+        pre_order_traverse(root->left);
+    }
+    if (root->right != NULL) {
+        pre_order_traverse(root->right);
+    }
+}
+
+void post_order_traverse(struct Node *root) {
+    if (root->left != NULL) {
+        pre_order_traverse(root->left);
+    }
+    if (root->right != NULL) {
+        pre_order_traverse(root->right);
+    }
+    printf("%d\n", root->data);
 }
