@@ -126,6 +126,12 @@ void test_post_order_traverse(void) {
     post_order_traverse(create_test_tree());
 }
 
+void test_order_traverse_when_root_is_null(void) {
+    TEST_ASSERT_NULL(in_order_traverse(NULL));
+    TEST_ASSERT_NULL(pre_order_traverse(NULL));
+    TEST_ASSERT_NULL(post_order_traverse(NULL));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -136,6 +142,7 @@ int main(void) {
     RUN_TEST(test_pre_order_traverse);
     RUN_TEST(test_in_order_traverse);
     RUN_TEST(test_post_order_traverse);
+    RUN_TEST(test_order_traverse_when_root_is_null);
 
     return UNITY_END();
 }

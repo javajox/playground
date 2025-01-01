@@ -113,6 +113,9 @@ int delete_leaf(struct Node *root, char *loc_address) {
 }
 
 void in_order_traverse(struct Node *root) {
+    if (root == NULL) {
+        return;
+    }
     if (root->left != NULL) {
         in_order_traverse(root->left);
     }
@@ -123,6 +126,9 @@ void in_order_traverse(struct Node *root) {
 }
 
 void pre_order_traverse(struct Node *root) {
+    if (root == NULL) {
+        return;
+    }
     printf("%d\n", root->data);
     if (root->left != NULL) {
         pre_order_traverse(root->left);
@@ -133,6 +139,9 @@ void pre_order_traverse(struct Node *root) {
 }
 
 void post_order_traverse(struct Node *root) {
+    if (root == NULL) {
+        return;
+    }
     if (root->left != NULL) {
         pre_order_traverse(root->left);
     }
