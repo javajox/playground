@@ -143,10 +143,10 @@ void post_order_traverse(struct Node *root) {
         return;
     }
     if (root->left != NULL) {
-        pre_order_traverse(root->left);
+        post_order_traverse(root->left);
     }
     if (root->right != NULL) {
-        pre_order_traverse(root->right);
+        post_order_traverse(root->right);
     }
     printf("%d\n", root->data);
 }

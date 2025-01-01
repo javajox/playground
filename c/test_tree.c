@@ -127,9 +127,9 @@ void test_post_order_traverse(void) {
 }
 
 void test_order_traverse_when_root_is_null(void) {
-    TEST_ASSERT_NULL(in_order_traverse(NULL));
-    TEST_ASSERT_NULL(pre_order_traverse(NULL));
-    TEST_ASSERT_NULL(post_order_traverse(NULL));
+    in_order_traverse(NULL);
+    pre_order_traverse(NULL);
+    post_order_traverse(NULL);
 }
 
 int main(void) {
