@@ -200,13 +200,11 @@ static bool not_empty(const struct Queue *queue) {
     return queue->head != NULL;
 }
 
-void level_order_traverse(const struct Node *root) {
+void level_order_traverse(struct Node *root) {
     struct Queue *queue = malloc(sizeof(struct Queue));
     assert(queue != NULL);
 
-    printf("%d\n", root->data);
-    enqueue(queue, root->left);
-    enqueue(queue, root->right);
+    enqueue(queue, root);
     while (not_empty(queue)) {
         const struct Node *tree_node = dequeue(queue);
         printf("%d\n", tree_node->data);
