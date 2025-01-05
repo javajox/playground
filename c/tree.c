@@ -112,7 +112,7 @@ int delete_leaf(struct Node *root, char *loc_address) {
     return 0;
 }
 
-void in_order_traverse(struct Node *root) {
+void in_order_traverse(const struct Node *root) {
     if (root == NULL) {
         return;
     }
@@ -125,7 +125,7 @@ void in_order_traverse(struct Node *root) {
     }
 }
 
-void pre_order_traverse(struct Node *root) {
+void pre_order_traverse(const struct Node *root) {
     if (root == NULL) {
         return;
     }
@@ -138,7 +138,7 @@ void pre_order_traverse(struct Node *root) {
     }
 }
 
-void post_order_traverse(struct Node *root) {
+void post_order_traverse(const struct Node *root) {
     if (root == NULL) {
         return;
     }
@@ -196,11 +196,11 @@ static struct Node *dequeue(struct Queue *queue) {
     return data;
 }
 
-bool not_empty(struct Queue *queue) {
+static bool not_empty(const struct Queue *queue) {
     return queue->head != NULL;
 }
 
-void level_order_traverse(struct Node *root) {
+void level_order_traverse(const struct Node *root) {
     struct Queue *queue = malloc(sizeof(struct Queue));
     assert(queue != NULL);
 
