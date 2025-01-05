@@ -37,5 +37,5 @@ struct Node *create_node(int node_data);
 void in_order_traverse(struct Node *root);
 void pre_order_traverse(struct Node *root);
 void post_order_traverse(struct Node *root);
-
+void level_order_traverse(struct Node *root);
 #endif //C_TREE_H

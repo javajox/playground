@@ -150,3 +150,73 @@ void post_order_traverse(struct Node *root) {
     }
     printf("%d\n", root->data);
 }
+
+struct QNode {
+    // pointer to tree node
+    struct Node *data;
+    struct QNode *next;
+};
+
+struct Queue {
+    struct QNode *head;
+};
+
+static void enqueue(struct Queue *queue, struct Node *tree_node) {
+    assert(queue != NULL);
+    struct QNode *e = malloc(sizeof (struct QNode));
+    e->data = tree_node;
+    e->next = NULL;
+    if (queue->head == NULL) {
+        queue->head = e;
+    } else {
+        e->next = queue->head;
+        queue->head = e;
+    }
+}
+
+static struct Node *dequeue(struct Queue *queue) {
+    assert(queue != NULL);
+    assert(queue->head != NULL);
+    struct Node *data = NULL;
+    if (queue->head->next == NULL) {
+        data = queue->head->data;
+        free(queue->head);
+        queue->head = NULL;
+    } else {
+        struct QNode *e = queue->head->next;
+        struct QNode *p = queue->head;
+        while (e->next != NULL) {
+            p = e;
+            e = e->next;
+        }
+        data = e->data;
+        free(e);
+        p->next = NULL;
+    }
+    return data;
+}
+
+bool not_empty(struct Queue *queue) {
+    return queue->head != NULL;
+}
+
+void level_order_traverse(struct Node *root) {
+    struct Queue *queue = malloc(sizeof(struct Queue));
+    assert(queue != NULL);
+
+    printf("%d\n", root->data);
+    enqueue(queue, root->left);
+    enqueue(queue, root->right);
+    while (not_empty(queue)) {
+        struct Node *tree_node = dequeue(queue);
+        printf("%d\n", tree_node->data);
+        if (tree_node->left != NULL) {
+            enqueue(queue, tree_node->left);
+        }
+        if (tree_node->right != NULL) {
+            enqueue(queue, tree_node->right);
+        }
+    }
+
+    free(queue);
+}
