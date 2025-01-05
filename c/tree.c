@@ -4,18 +4,18 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-struct Node *create_node(int root_data) {
+struct Node *create_node(int node_data) {
     struct Node *node = malloc(sizeof(struct Node));
     assert(node != NULL);
-    node->data = root_data;
+    node->data = node_data;
     node->left = NULL;
     node->right = NULL;
     return node;
 }
 
-static struct Node *find_node_by_loc(struct Node *root, char *loc_address) {
+static struct Node *find_node_by_loc(struct Node *root, const char *loc_address) {
     struct Node *c = root;
-    char *l = loc_address;
+    const char *l = loc_address;
     while (*l != '\0') {
         if (*l == 'L') {
             c = c->left;
@@ -40,7 +40,7 @@ static bool location_not_valid(char *loc_address) {
     return false;
 }
 
-int insert(struct Node *root, char *loc_address, char direction, int node_data) {
+int insert(struct Node *root, char *loc_address, const char direction, const int node_data) {
     if (root == NULL) {
         return -4;
     }
@@ -208,7 +208,7 @@ void level_order_traverse(const struct Node *root) {
     enqueue(queue, root->left);
     enqueue(queue, root->right);
     while (not_empty(queue)) {
-        struct Node *tree_node = dequeue(queue);
+        const struct Node *tree_node = dequeue(queue);
         printf("%d\n", tree_node->data);
         if (tree_node->left != NULL) {
             enqueue(queue, tree_node->left);
