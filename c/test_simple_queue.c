@@ -25,11 +25,10 @@ void test_enqueue_dequeue(void) {
     enqueue(queue, 1);
     enqueue(queue, 2);
 
-    int e1 = dequeue(queue);
-    int e2 = dequeue(queue);
-
-    TEST_ASSERT_EQUAL_INT(1, e1);
-    TEST_ASSERT_EQUAL_INT(2, e2);
+    TEST_ASSERT_EQUAL_INT(1, dequeue(queue));
+    TEST_ASSERT_EQUAL_INT(2, dequeue(queue));
+    TEST_ASSERT_EQUAL_INT(-1, dequeue(queue));
+    TEST_ASSERT_EQUAL_INT(-1, dequeue(queue));
 }
 
 void test_get_size_when_queue_is_empty(void) {

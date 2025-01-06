@@ -22,17 +22,6 @@ void destroy_queue(struct Queue *queue) {
     free(queue);
 }
 
-struct Node *find_last(struct Queue *queue) {
-    if (queue->first == NULL) {
-        return NULL;
-    }
-    struct Node *node = queue->first;
-    while (node->next != NULL) {
-        node = node->next;
-    }
-    return node;
-}
-
 void enqueue(struct Queue *queue, int element) {
     struct Node *node = malloc(sizeof(struct Node));
     node->data = element;
@@ -40,8 +29,8 @@ void enqueue(struct Queue *queue, int element) {
     if (queue->first == NULL) {
         queue->first = node;
     } else {
-        struct Node *last = find_last(queue);
-        last->next = node;
+        node->next = queue->first;
+        queue->first = node;
     }
 }
 
@@ -49,10 +38,22 @@ int dequeue(struct Queue *queue) {
     if (queue == NULL || queue->first == NULL) {
         return -1;
     }
-    struct Node *n = queue->first;
-    queue->first = queue->first->next;
-    int data = n->data;
-    free(n);
+    int data;
+    if (queue->first->next == NULL) {
+        data = queue->first->data;
+        free(queue->first);
+        queue->first = NULL;
+    } else {
+        struct Node *n = queue->first->next;
+        struct Node *p = queue->first;
+        while (n->next != NULL) {
+            p = n;
+            n = n->next;
+        }
+        data = n->data;
+        free(n);
+        p->next = NULL;
+    }
     return data;
 }
 
@@ -73,5 +74,9 @@ int peek(struct Queue *queue) {
     if (queue == NULL || queue->first == NULL) {
         return -1;
     }
-    return queue->first->data;
+    struct Node *c = queue->first;
+    while (c->next != NULL) {
+        c = c->next;
+    }
+    return c->data;
 }
