@@ -159,6 +159,18 @@ void test_node_count(void) {
     TEST_ASSERT_EQUAL_INT(7, node_count(create_test_tree()));
 }
 
+void test_leaf_count(void) {
+    TEST_ASSERT_EQUAL_INT(3, leaf_count(create_test_tree()));
+}
+
+void test_leaf_count_when_root_is_null(void) {
+    TEST_ASSERT_EQUAL_INT(0, leaf_count(NULL));
+}
+
+void test_leaf_count_when_1_node(void) {
+    TEST_ASSERT_EQUAL_INT(1, leaf_count(create_node(123)));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -174,6 +186,9 @@ int main(void) {
     RUN_TEST(test_node_count_when_root_is_null);
     RUN_TEST(test_node_count_when_3_nodes);
     RUN_TEST(test_node_count);
+    RUN_TEST(test_leaf_count);
+    RUN_TEST(test_leaf_count_when_root_is_null);
+    RUN_TEST(test_leaf_count_when_1_node);
 
     return UNITY_END();
 }

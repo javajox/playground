@@ -225,3 +225,13 @@ int node_count(struct Node *root) {
     }
     return node_count(root->left) + node_count(root->right) + 1;
 }
+
+int leaf_count(struct Node *root) {
+    if (root == NULL) {
+        return 0;
+    }
+    if (root->left == NULL && root->right == NULL) {
+        return 1;
+    }
+    return leaf_count(root->left) + leaf_count(root->right);
+}
