@@ -144,6 +144,21 @@ void test_level_order_traverse(void) {
     level_order_traverse(root);
 }
 
+void test_node_count_when_root_is_null(void) {
+    TEST_ASSERT_EQUAL_INT(0, node_count(NULL));
+}
+
+void test_node_count_when_3_nodes(void) {
+    root = create_node(123);
+    root->left = create_node(1);
+    root->right = create_node(2);
+    TEST_ASSERT_EQUAL_INT(3, node_count(root));
+}
+
+void test_node_count(void) {
+    TEST_ASSERT_EQUAL_INT(7, node_count(create_test_tree()));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -156,6 +171,9 @@ int main(void) {
     RUN_TEST(test_post_order_traverse);
     RUN_TEST(test_order_traverse_when_root_is_null);
     RUN_TEST(test_level_order_traverse);
+    RUN_TEST(test_node_count_when_root_is_null);
+    RUN_TEST(test_node_count_when_3_nodes);
+    RUN_TEST(test_node_count);
 
     return UNITY_END();
 }

@@ -218,3 +218,10 @@ void level_order_traverse(struct Node *root) {
 
     free(queue);
 }
+
+int node_count(struct Node *root) {
+    if (root == NULL) {
+        return 0;
+    }
+    return node_count(root->left) + node_count(root->right) + 1;
+}
