@@ -186,7 +186,7 @@ void test_height_when_root_is_null(void) {
 int main(void) {
     UNITY_BEGIN();
 
-    /*RUN_TEST(test_create_root);
+    RUN_TEST(test_create_root);
     RUN_TEST(test_insert);
     RUN_TEST(test_when_wrong_direction);
     RUN_TEST(test_delete_leaf);
@@ -200,7 +200,7 @@ int main(void) {
     RUN_TEST(test_node_count);
     RUN_TEST(test_leaf_count);
     RUN_TEST(test_leaf_count_when_root_is_null);
-    RUN_TEST(test_leaf_count_when_1_node);*/
+    RUN_TEST(test_leaf_count_when_1_node);
     RUN_TEST(test_height);
     RUN_TEST(test_height_when_1_node);
     RUN_TEST(test_height_when_root_is_null);
