@@ -253,7 +253,7 @@ bool balanced(struct Node *root) {
     if (root->left == NULL && root->right == NULL) {
         return true;
     }
-    if (!(abs(height(root->left) - height(root->right)) <= 1)) {
+    if (abs(height(root->left) - height(root->right)) > 1) {
         return false;
     }
     return balanced(root->left) && balanced(root->right);
