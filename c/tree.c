@@ -219,14 +219,14 @@ void level_order_traverse(struct Node *root) {
     free(queue);
 }
 
-int node_count(struct Node *root) {
+int node_count(const struct Node *root) {
     if (root == NULL) {
         return 0;
     }
     return node_count(root->left) + node_count(root->right) + 1;
 }
 
-int leaf_count(struct Node *root) {
+int leaf_count(const struct Node *root) {
     if (root == NULL) {
         return 0;
     }
@@ -236,7 +236,7 @@ int leaf_count(struct Node *root) {
     return leaf_count(root->left) + leaf_count(root->right);
 }
 
-int height(struct Node *root) {
+int height(const struct Node *root) {
     if (root == NULL) {
         return 0;
     }
