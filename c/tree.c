@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <math.h>
 
 struct Node *create_node(int node_data) {
     struct Node *node = malloc(sizeof(struct Node));
@@ -244,4 +245,17 @@ int height(const struct Node *root) {
     int height_right = height(root->right);
 
     return 1 + (height_left > height_right ? height_left : height_right);
+}
+
+bool balanced(struct Node *root) {
+    if (root == NULL) {
+        return true;
+    }
+    if (root->left == NULL && root->right == NULL) {
+        return true;
+    }
+    if (!(abs(height(root->left) - height(root->right)) <= 1)) {
+        return false;
+    }
+    return balanced(root->left) && balanced(root->right);
 }

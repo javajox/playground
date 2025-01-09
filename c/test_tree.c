@@ -114,6 +114,17 @@ struct Node *create_test_tree() {
     return root;
 }
 
+struct Node *create_balanced_test_tree() {
+    root = create_node(1);
+    root->left = create_node(2);
+    root->right = create_node(3);
+    root->left->left = create_node(4);
+    root->left->right = create_node(5);
+    root->right->left = create_node(6);
+    root->right->right = create_node(7);
+    return root;
+}
+
 void test_in_order_traverse(void) {
     in_order_traverse(create_test_tree());
 }
@@ -183,6 +194,26 @@ void test_height_when_root_is_null(void) {
     TEST_ASSERT_EQUAL_INT(0, height(NULL));
 }
 
+void test_balanced_when_root_is_null(void) {
+    TEST_ASSERT_TRUE(balanced(NULL));
+}
+
+void test_balanced_when_1_node(void) {
+    TEST_ASSERT_TRUE(balanced(create_node(123)));
+}
+
+void test_balanced_when_tree_is_balanced(void) {
+    struct Node *root = create_balanced_test_tree();
+    TEST_ASSERT_TRUE(balanced(root));
+}
+
+void test_balanced_when_tree_is_not_balanced(void) {
+    struct Node *root = create_balanced_test_tree();
+    root->right->right->right = create_node(8);
+    root->right->right->right->right = create_node(9);
+    TEST_ASSERT_FALSE(balanced(root));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -204,6 +235,10 @@ int main(void) {
     RUN_TEST(test_height);
     RUN_TEST(test_height_when_1_node);
     RUN_TEST(test_height_when_root_is_null);
+    RUN_TEST(test_balanced_when_root_is_null);
+    RUN_TEST(test_balanced_when_1_node);
+    RUN_TEST(test_balanced_when_tree_is_balanced);
+    RUN_TEST(test_balanced_when_tree_is_not_balanced);
 
     return UNITY_END();
 }

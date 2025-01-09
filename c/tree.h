@@ -1,6 +1,7 @@
 // simple binary tree
 #ifndef C_TREE_H
 #define C_TREE_H
+#include <stdbool.h>
 
 // loc_address is given as a string, only "R" (from Right) and "L" (from Left) letters are allowed, examples LLRLRR
 
@@ -43,5 +44,7 @@ int node_count(const struct Node *root);
 int leaf_count(const struct Node *root);
 
 int height(const struct Node *root);
+
+bool balanced(struct Node *root);
 
 #endif //C_TREE_H
