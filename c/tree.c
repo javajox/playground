@@ -3,7 +3,6 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <math.h>
 
 struct Node *create_node(int node_data) {
     struct Node *node = malloc(sizeof(struct Node));
