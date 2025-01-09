@@ -42,4 +42,6 @@ void level_order_traverse(struct Node *root);
 int node_count(struct Node *root);
 int leaf_count(struct Node *root);
 
+int height(struct Node *root);
+
 #endif //C_TREE_H

@@ -235,3 +235,13 @@ int leaf_count(struct Node *root) {
     }
     return leaf_count(root->left) + leaf_count(root->right);
 }
+
+int height(struct Node *root) {
+    if (root == NULL) {
+        return 0;
+    }
+    int height_left = height(root->left);
+    int height_right = height(root->right);
+
+    return 1 + (height_left > height_right ? height_left : height_right);
+}

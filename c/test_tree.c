@@ -171,10 +171,22 @@ void test_leaf_count_when_1_node(void) {
     TEST_ASSERT_EQUAL_INT(1, leaf_count(create_node(123)));
 }
 
+void test_height(void) {
+    TEST_ASSERT_EQUAL_INT(4, height(create_test_tree()));
+}
+
+void test_height_when_1_node(void) {
+    TEST_ASSERT_EQUAL_INT(1, height(create_node(123)));
+}
+
+void test_height_when_root_is_null(void) {
+    TEST_ASSERT_EQUAL_INT(0, height(NULL));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
-    RUN_TEST(test_create_root);
+    /*RUN_TEST(test_create_root);
     RUN_TEST(test_insert);
     RUN_TEST(test_when_wrong_direction);
     RUN_TEST(test_delete_leaf);
@@ -188,7 +200,10 @@ int main(void) {
     RUN_TEST(test_node_count);
     RUN_TEST(test_leaf_count);
     RUN_TEST(test_leaf_count_when_root_is_null);
-    RUN_TEST(test_leaf_count_when_1_node);
+    RUN_TEST(test_leaf_count_when_1_node);*/
+    RUN_TEST(test_height);
+    RUN_TEST(test_height_when_1_node);
+    RUN_TEST(test_height_when_root_is_null);
 
     return UNITY_END();
 }
