@@ -258,3 +258,27 @@ bool balanced(const struct Node *root) {
     }
     return balanced(root->left) && balanced(root->right);
 }
+
+// "balanced" function, optimized
+int balanced_opt(const struct Node *root) {
+    if (root == NULL) {
+        return 0;
+    }
+    int height_left = balanced_opt(root->left);
+    if (height_left == -1) {
+        return -1;
+    }
+    int height_right = balanced_opt(root->right);
+    if (height_right == -1) {
+        return -1;
+    }
+
+    if (abs(height_left - height_right) > 1) {
+        return -1;
+    }
+    return 1 + (height_left > height_right ? height_left : height_right);
+}
+
+bool balanced2(const struct Node *root) {
+    return balanced_opt(root) != -1;
+}

@@ -214,6 +214,26 @@ void test_balanced_when_tree_is_not_balanced(void) {
     TEST_ASSERT_FALSE(balanced(root));
 }
 
+void test_balanced2_when_root_is_null(void) {
+    TEST_ASSERT_TRUE(balanced2(NULL));
+}
+
+void test_balanced2_when_1_node(void) {
+    TEST_ASSERT_TRUE(balanced2(create_node(123)));
+}
+
+void test_balanced2_when_tree_is_balanced(void) {
+    struct Node *root = create_balanced_test_tree();
+    TEST_ASSERT_TRUE(balanced2(root));
+}
+
+void test_balanced2_when_tree_is_not_balanced(void) {
+    struct Node *root = create_balanced_test_tree();
+    root->right->right->right = create_node(8);
+    root->right->right->right->right = create_node(9);
+    TEST_ASSERT_FALSE(balanced2(root));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -239,6 +259,10 @@ int main(void) {
     RUN_TEST(test_balanced_when_1_node);
     RUN_TEST(test_balanced_when_tree_is_balanced);
     RUN_TEST(test_balanced_when_tree_is_not_balanced);
+    RUN_TEST(test_balanced2_when_root_is_null);
+    RUN_TEST(test_balanced2_when_1_node);
+    RUN_TEST(test_balanced2_when_tree_is_balanced);
+    RUN_TEST(test_balanced2_when_tree_is_not_balanced);
 
     return UNITY_END();
 }

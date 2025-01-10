@@ -47,4 +47,11 @@ int height(const struct Node *root);
 
 bool balanced(const struct Node *root);
 
+/**
+ * Optimised version of "balanced" method
+ * @param root
+ * @return if the tree is balanced or not
+ */
+bool balanced2(const struct Node *root);
+
 #endif //C_TREE_H
