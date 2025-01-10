@@ -45,6 +45,6 @@ int leaf_count(const struct Node *root);
 
 int height(const struct Node *root);
 
-bool balanced(struct Node *root);
+bool balanced(const struct Node *root);
 
 #endif //C_TREE_H

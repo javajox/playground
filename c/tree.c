@@ -246,7 +246,7 @@ int height(const struct Node *root) {
     return 1 + (height_left > height_right ? height_left : height_right);
 }
 
-bool balanced(struct Node *root) {
+bool balanced(const struct Node *root) {
     if (root == NULL) {
         return true;
     }
