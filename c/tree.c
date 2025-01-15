@@ -4,6 +4,51 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+struct QNode {
+    // pointer to tree node
+    struct Node *data;
+    struct QNode *next;
+};
+
+struct Queue {
+    struct QNode *head;
+};
+
+static void enqueue(struct Queue *queue, struct Node *tree_node) {
+    assert(queue != NULL);
+    struct QNode *e = malloc(sizeof (struct QNode));
+    e->data = tree_node;
+    e->next = NULL;
+    if (queue->head == NULL) {
+        queue->head = e;
+    } else {
+        e->next = queue->head;
+        queue->head = e;
+    }
+}
+
+static struct Node *dequeue(struct Queue *queue) {
+    assert(queue != NULL);
+    assert(queue->head != NULL);
+    struct Node *data = NULL;
+    if (queue->head->next == NULL) {
+        data = queue->head->data;
+        free(queue->head);
+        queue->head = NULL;
+    } else {
+        struct QNode *e = queue->head->next;
+        struct QNode *p = queue->head;
+        while (e->next != NULL) {
+            p = e;
+            e = e->next;
+        }
+        data = e->data;
+        free(e);
+        p->next = NULL;
+    }
+    return data;
+}
+
 struct Node *create_node(int node_data) {
     struct Node *node = malloc(sizeof(struct Node));
     assert(node != NULL);
@@ -149,51 +194,6 @@ void post_order_traverse(const struct Node *root) {
         post_order_traverse(root->right);
     }
     printf("%d\n", root->data);
-}
-
-struct QNode {
-    // pointer to tree node
-    struct Node *data;
-    struct QNode *next;
-};
-
-struct Queue {
-    struct QNode *head;
-};
-
-static void enqueue(struct Queue *queue, struct Node *tree_node) {
-    assert(queue != NULL);
-    struct QNode *e = malloc(sizeof (struct QNode));
-    e->data = tree_node;
-    e->next = NULL;
-    if (queue->head == NULL) {
-        queue->head = e;
-    } else {
-        e->next = queue->head;
-        queue->head = e;
-    }
-}
-
-static struct Node *dequeue(struct Queue *queue) {
-    assert(queue != NULL);
-    assert(queue->head != NULL);
-    struct Node *data = NULL;
-    if (queue->head->next == NULL) {
-        data = queue->head->data;
-        free(queue->head);
-        queue->head = NULL;
-    } else {
-        struct QNode *e = queue->head->next;
-        struct QNode *p = queue->head;
-        while (e->next != NULL) {
-            p = e;
-            e = e->next;
-        }
-        data = e->data;
-        free(e);
-        p->next = NULL;
-    }
-    return data;
 }
 
 static bool not_empty(const struct Queue *queue) {
