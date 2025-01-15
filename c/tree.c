@@ -14,6 +14,10 @@ struct Queue {
     struct QNode *head;
 };
 
+struct Stack {
+    struct QNode *top;
+};
+
 static void enqueue(struct Queue *queue, struct Node *tree_node) {
     assert(queue != NULL);
     struct QNode *e = malloc(sizeof (struct QNode));
@@ -47,6 +51,30 @@ static struct Node *dequeue(struct Queue *queue) {
         p->next = NULL;
     }
     return data;
+}
+
+static void push(struct Stack *stack, struct Node *tree_node) {
+    assert(stack != NULL);
+    assert(tree_node != NULL);
+    struct QNode *e = malloc(sizeof (struct QNode));
+    e->data = tree_node;
+    e->next = NULL;
+    if (stack->top == NULL) {
+        stack->top = e;
+    } else {
+        e->next = stack->top;
+        stack->top = e;
+    }
+}
+
+static struct Node *pop(struct Stack *stack) {
+    assert(stack != NULL);
+    assert(stack->top != NULL);
+    struct QNode *e = stack->top;
+    stack->top = stack->top->next;
+    struct Node *p = e->data;
+    free(e);
+    return p;
 }
 
 struct Node *create_node(int node_data) {
