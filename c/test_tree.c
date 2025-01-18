@@ -234,6 +234,10 @@ void test_balanced2_when_tree_is_not_balanced(void) {
     TEST_ASSERT_FALSE(balanced2(root));
 }
 
+void test_in_order_traverse_non_rec(void) {
+    in_order_traverse_non_rec(create_test_tree());
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -263,6 +267,7 @@ int main(void) {
     RUN_TEST(test_balanced2_when_1_node);
     RUN_TEST(test_balanced2_when_tree_is_balanced);
     RUN_TEST(test_balanced2_when_tree_is_not_balanced);
+    RUN_TEST(test_in_order_traverse_non_rec);
 
     return UNITY_END();
 }

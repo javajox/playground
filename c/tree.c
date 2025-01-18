@@ -53,6 +53,11 @@ static struct Node *dequeue(struct Queue *queue) {
     return data;
 }
 
+static bool not_empty(const struct Queue *queue) {
+    assert(queue != NULL);
+    return queue->head != NULL;
+}
+
 static void push(struct Stack *stack, struct Node *tree_node) {
     assert(stack != NULL);
     assert(tree_node != NULL);
@@ -75,6 +80,11 @@ static struct Node *pop(struct Stack *stack) {
     struct Node *p = e->data;
     free(e);
     return p;
+}
+
+static bool stack_not_empty(const struct Stack *stack) {
+    assert(stack != NULL);
+    return stack->top != NULL;
 }
 
 struct Node *create_node(int node_data) {
@@ -224,10 +234,6 @@ void post_order_traverse(const struct Node *root) {
     printf("%d\n", root->data);
 }
 
-static bool not_empty(const struct Queue *queue) {
-    return queue->head != NULL;
-}
-
 void level_order_traverse(struct Node *root) {
     struct Queue *queue = malloc(sizeof(struct Queue));
     assert(queue != NULL);
@@ -309,4 +315,21 @@ int balanced_opt(const struct Node *root) {
 
 bool balanced2(const struct Node *root) {
     return balanced_opt(root) != -1;
+}
+
+void in_order_traverse_non_rec(struct Node *root) {
+    struct Stack *stack = malloc(sizeof(struct Stack));
+    assert(stack != NULL);
+    stack->top = NULL;
+    struct Node *c = root;
+    while (stack_not_empty(stack) || c != NULL) {
+        while (c != NULL) {
+            push(stack, c);
+            c = c->left;
+        }
+        c = pop(stack);
+        printf("%d\n", c->data);
+        c = c->right;
+    }
+    free(stack);
 }

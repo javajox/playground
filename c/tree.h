@@ -54,4 +54,6 @@ bool balanced(const struct Node *root);
  */
 bool balanced2(const struct Node *root);
 
+void in_order_traverse_non_rec(struct Node *root);
+
 #endif //C_TREE_H
