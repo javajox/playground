@@ -238,6 +238,10 @@ void test_in_order_traverse_non_rec(void) {
     in_order_traverse_non_rec(create_test_tree());
 }
 
+void test_pre_order_traverse_non_rec(void) {
+    pre_order_traverse_non_rec(create_test_tree());
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -268,6 +272,7 @@ int main(void) {
     RUN_TEST(test_balanced2_when_tree_is_balanced);
     RUN_TEST(test_balanced2_when_tree_is_not_balanced);
     RUN_TEST(test_in_order_traverse_non_rec);
+    RUN_TEST(test_pre_order_traverse_non_rec);
 
     return UNITY_END();
 }

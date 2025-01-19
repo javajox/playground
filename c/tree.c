@@ -333,3 +333,22 @@ void in_order_traverse_non_rec(struct Node *root) {
     }
     free(stack);
 }
+
+void pre_order_traverse_non_rec(struct Node *root) {
+    struct Stack *stack = malloc(sizeof(struct Stack));
+    assert(stack != NULL);
+    stack->top = NULL;
+    push(stack, root);
+    struct Node *c;
+    while (stack_not_empty(stack)) {
+        c = pop(stack);
+        printf("%d\n", c->data);
+        if (c->right != NULL) {
+            push(stack, c->right);
+        }
+        if (c->left != NULL) {
+            push(stack, c->left);
+        }
+    }
+    free(stack);
+}
