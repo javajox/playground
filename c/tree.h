@@ -35,9 +35,29 @@ struct Node *create_node(int node_data);
 
 //traversal operations
 
+/**
+ * Visit recursively the tree nodes in the following order : left subtree --> root node --> right subtree
+ * @param root
+ */
 void in_order_traverse(const struct Node *root);
+
+/**
+ * Visit recursively the tree nodes in the following order : root node --> left subtree --> right subtree
+ * @param root
+ */
 void pre_order_traverse(const struct Node *root);
+
+/**
+ * Visit recursively the tree nodes in the following order : left subtree --> right subtree --> root node
+ * @param root
+ */
 void post_order_traverse(const struct Node *root);
+
+/**
+ * Level-order traversal is a breadth-first traversal technique for binary trees.
+ * In this method, nodes are visited level by level from top to bottom and from left to right within each level
+ * @param root
+ */
 void level_order_traverse(struct Node *root);
 
 int node_count(const struct Node *root);
