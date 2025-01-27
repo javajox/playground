@@ -29,6 +29,7 @@ void destroy_stack(struct Stack *stack) {
 void push(struct Stack *stack, int e) {
     assert(stack != NULL && "Cannot push to a NULL stack");
     struct Node *node = malloc(sizeof(struct Node));
+    assert(node != NULL);
     node->data = e;
     if (stack->first == NULL) {
         node->next = NULL;

@@ -21,6 +21,7 @@ struct Stack {
 static void enqueue(struct Queue *queue, struct Node *tree_node) {
     assert(queue != NULL);
     struct QNode *e = malloc(sizeof (struct QNode));
+    assert(e != NULL);
     e->data = tree_node;
     e->next = NULL;
     if (queue->head == NULL) {
@@ -62,6 +63,7 @@ static void push(struct Stack *stack, struct Node *tree_node) {
     assert(stack != NULL);
     assert(tree_node != NULL);
     struct QNode *e = malloc(sizeof (struct QNode));
+    assert(e != NULL);
     e->data = tree_node;
     e->next = NULL;
     if (stack->top == NULL) {

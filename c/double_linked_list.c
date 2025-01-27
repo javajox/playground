@@ -47,6 +47,8 @@ void add_node() {
     struct Node *node;
     node = malloc(sizeof (struct Node));
 
+    assert(node != NULL);
+
     puts("Enter node data:");
     puts("id = ");
     scanf("%d", &node->id);
@@ -202,6 +204,7 @@ void insert() {
 
     struct Node *node;
     node = malloc(sizeof(struct Node));
+    assert(node != NULL);
     puts("Enter node data:");
     puts("id = ");
     scanf("%d", &node->id);

@@ -4,8 +4,8 @@
 
 struct Queue *create_queue() {
     struct Queue *queue = malloc(sizeof(struct Queue));
-    queue->first = NULL;
     assert(queue != NULL);
+    queue->first = NULL;
     return queue;
 }
 
@@ -14,7 +14,7 @@ void destroy_queue(struct Queue *queue) {
         return;
     }
     struct Node *n = queue->first;
-    while (queue->first != NULL) {
+    while (n != NULL) {
         queue->first = queue->first->next;
         free(n);
         n = queue->first;
@@ -24,6 +24,7 @@ void destroy_queue(struct Queue *queue) {
 
 void enqueue(struct Queue *queue, int element) {
     struct Node *node = malloc(sizeof(struct Node));
+    assert(node != NULL);
     node->data = element;
     node->next = NULL;
     if (queue->first == NULL) {
