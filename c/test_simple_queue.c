@@ -35,7 +35,7 @@ void test_get_size_when_queue_is_empty(void) {
     queue = create_queue();
 
     TEST_ASSERT_EQUAL_INT(0, get_size(queue));
-    TEST_ASSERT_EQUAL_INT(0, NULL);
+    TEST_ASSERT_EQUAL_INT(0, get_size(NULL));
 }
 
 void test_get_size_when_queue_is_not_empty(void) {

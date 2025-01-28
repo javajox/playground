@@ -6,6 +6,7 @@ struct Queue *create_queue() {
     struct Queue *queue = malloc(sizeof(struct Queue));
     assert(queue != NULL);
     queue->first = NULL;
+    queue->last = NULL;
     return queue;
 }
 
