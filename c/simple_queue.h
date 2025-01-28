@@ -7,8 +7,8 @@ struct Node {
 };
 
 struct Queue {
-    // pointer to the first element
     struct Node *first;
+    struct Node *last;
 };
 
 struct Queue *create_queue();

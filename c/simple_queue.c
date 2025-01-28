@@ -27,34 +27,24 @@ void enqueue(struct Queue *queue, int element) {
     assert(node != NULL);
     node->data = element;
     node->next = NULL;
-    if (queue->first == NULL) {
+    if (queue->first == NULL && queue->last == NULL) {
         queue->first = node;
-    } else {
-        node->next = queue->first;
-        queue->first = node;
+        queue->last = node;
+        return;
     }
+    assert(queue->last != NULL);
+    queue->last->next = node;
+    queue->last = node;
 }
 
 int dequeue(struct Queue *queue) {
     if (queue == NULL || queue->first == NULL) {
         return -1;
     }
-    int data;
-    if (queue->first->next == NULL) {
-        data = queue->first->data;
-        free(queue->first);
-        queue->first = NULL;
-    } else {
-        struct Node *n = queue->first->next;
-        struct Node *p = queue->first;
-        while (n->next != NULL) {
-            p = n;
-            n = n->next;
-        }
-        data = n->data;
-        free(n);
-        p->next = NULL;
-    }
+    int data = queue->first->data;
+    struct Node *n = queue->first;
+    queue->first = queue->first->next;
+    free(n);
     return data;
 }
 
@@ -75,9 +65,5 @@ int peek(struct Queue *queue) {
     if (queue == NULL || queue->first == NULL) {
         return -1;
     }
-    struct Node *c = queue->first;
-    while (c->next != NULL) {
-        c = c->next;
-    }
-    return c->data;
+    return queue->first->data;
 }
