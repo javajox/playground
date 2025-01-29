@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+struct Node {
+    int data;
+    struct Node *next;
+};
+
 struct Stack *create_stack() {
     struct Stack *stack = malloc(sizeof(struct Stack));
     assert(stack != NULL);
@@ -10,20 +15,12 @@ struct Stack *create_stack() {
 }
 
 void destroy_stack(struct Stack *stack) {
-    if (stack == NULL) {
-        return;
+    while (stack->first != NULL) {
+        struct Node *n = stack->first;
+        stack->first = stack->first->next;
+        free(n);
     }
-    if (stack->first == NULL) {
-        free(stack);
-        return;
-    }
-    struct Node *n = stack->first;
-    struct Node *p = NULL;
-    while (n != NULL) {
-        p = n;
-        n = n->next;
-        free(p);
-    }
+    free(stack);
 }
 
 void push(struct Stack *stack, int e) {

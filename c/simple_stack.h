@@ -3,13 +3,7 @@
 
 #include <stdbool.h>
 
-struct Node {
-    int data;
-    struct Node *next;
-};
-
 struct Stack {
-    // point on the first element
     struct Node *first;
 };
 
