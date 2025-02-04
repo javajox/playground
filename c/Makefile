@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # Source files
-UNITY_FILES = unity.c
+UNITY_FILES = unity.c unit_test_helper.c
 SOURCE_DIRS = . sys_prg
 SOURCE_FILES = $(wildcard $(addsuffix /*.c, $(SOURCE_DIRS)))
 
