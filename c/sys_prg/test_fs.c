@@ -19,6 +19,7 @@ void test_create_txt_file(void) {
    create_txt_file(path_to_file, "test");
    TEST_ASSERT_TRUE(file_exists(path_to_file));
 
+   TEST_ASSERT_EQUAL_STRING("test", read_txt_file(path_to_file));
    remove(path_to_file);
 
    TEST_ASSERT_FALSE(file_exists(path_to_file));

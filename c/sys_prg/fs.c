@@ -1,5 +1,6 @@
 #include "fs.h"
 #include <fcntl.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include "assert.h"
@@ -24,4 +25,19 @@ bool file_exists(const char *file_path) {
 
 int remove(const char *file_path) {
     return unlink(file_path) == 0 ? 0 : -1;
+}
+
+char *read_txt_file(const char *file_path) {
+    assert(file_path != NULL);
+    int fd = open(file_path, O_RDONLY);
+    if (fd == -1) {
+        return NULL;
+    }
+    char *buffer = malloc(4096);
+    ssize_t bytes_read = read(fd, buffer, 4096);
+    close(fd);
+    if (bytes_read == -1) {
+        return NULL;
+    }
+    return buffer;
 }
